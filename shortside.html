@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hillside Strategies - Trusted lobbying & strategic advisory firm shaping policy and business outcomes across Africa and the globe.">
+  <meta name="keywords" content="lobbying, strategic advisory, policy, Africa, business, government relations">
+  <title>Hillside Strategies</title>
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#1a365d',
+            crimson: '#991b1b',
+            gold: '#d69e2e',
+            usblue: '#3b82f6',
+            usred: '#ef4444',
+            uswhite: '#f8fafc'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Button styles */
+    .btn-primary {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .px-6.py-3.bg-usred.text-white.font-semibold.rounded-lg.shadow {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    
+    .px-6.py-3.bg-usred.text-white.font-semibold.rounded-lg.shadow:hover {
+      background-color: #dc2626;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .px-6.py-3.bg-white.text-usblue.font-semibold.rounded-lg.shadow {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+    
+    .px-6.py-3.bg-white.text-usblue.font-semibold.rounded-lg.shadow:hover {
+      background-color: #f1f5f9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .service-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .category-tag {
+      transition: all 0.3s ease;
+    }
+    
+    .category-tag:hover {
+      transform: scale(1.05);
+    }
+    
+    .africa-map {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .location-marker {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: #ef4444;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+    
+    .location-marker::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ef4444;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+    }
+    
+    .what-we-do-link {
+      transition: transform 0.3s ease;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .what-we-do-link:hover {
+      transform: scale(1.05);
+      text-decoration: underline;
+      color: #fbbf24;
+    }
+    
+    .Services-link {
+      transition: transform 0.3s ease;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .Services-link:hover {
+      transform: scale(1.05);
+      text-decoration: underline;
+      color: #ef4444;
+    }
+    
+    .our-locations-link {
+      transition: transform 0.3s ease;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .our-locations-link:hover {
+      transform: scale(1.05);
+      text-decoration: underline;
+      color: #3b82f6;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+      }
+    }
+    
+    .location-tooltip {
+      position: absolute;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      transform: translate(-50%, -100%);
+      top: -10px;
+      left: 50%;
+      margin-top: -10px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 100;
+      color: #1f2937;
+    }
+    
+    .location-marker:hover .location-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -100%) translateY(-10px);
+    }
+    
+    /* Mobile menu animation */
+    #mobile-menu {
+      transition: max-height 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+    }
+    
+    #mobile-menu:not(.hidden) {
+      max-height: 300px;
+    }
+    
+    /* Page transition */
+    .page {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Service detail pages */
+    .service-hero {
+      background: linear-gradient(135deg, #3b82f6 0%, #1a365d 100%);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <!-- Header/Navigation -->
+  <header class="sticky top-0 z-50 bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center cursor-pointer" onclick="showPage('home')">
+        <span class="text-2xl font-bold text-usblue">Hillside</span>
+        <span class="text-gray-600">Strategies</span>
+      </div>
+      
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-gray-600 hover:text-usblue focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex space-x-8">
+        <a href="#" class="text-gray-600 hover:text-usred font-medium" onclick="showPage('home')">Home</a>
+        <a href="#" class="text-gray-600 hover:text-usred font-medium" onclick="showPage('about')">About</a>
+        <a href="#" class="text-gray-600 hover:text-usblue font-medium" onclick="showPage('services')">Services</a>
+        <a href="#" class="text-gray-600 hover:text-usblue font-medium" onclick="showPage('contact')">Contact</a>
+      </nav>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white px-6 py-4 shadow-lg">
+      <div class="flex flex-col space-y-4">
+        <a href="#" class="text-gray-600 hover:text-usblue font-medium" onclick="showPage('home')">Home</a>
+        <a href="#" class="text-gray-600 hover:text-usblue font-medium" onclick="showPage('about')">About</a>
+        <a href="#" class="text-gray-600 hover:text-usblue font-medium" onclick="showPage('services')">Services</a>
+        <a href="#" class="text-gray-600 hover:text-usblue font-medium" onclick="showPage('contact')">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Page -->
+  <div id="home" class="page active">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-usblue to-navy text-white">
+      <div class="absolute inset-0 bg-black opacity-20"></div>
+      <div class="max-w-7xl mx-auto px-6 py-28 text-center relative z-10">
+        <h1 class="text-4xl md:text-6xl font-bold">Hillside Strategies</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+          Trusted lobbying & strategic advisory firm shaping policy and business outcomes across Africa and the globe.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#" class="px-6 py-3 bg-usred text-white font-semibold rounded-lg shadow hover:bg-red-700 transition" onclick="showPage('contact')">Get in Touch</a>
+          <a href="#" class="px-6 py-3 bg-white text-usblue font-semibold rounded-lg shadow hover:bg-blue-100 transition" onclick="showPage('services')">Our Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Preview Section -->
+    <section id="about-preview" class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-900">Who We Are</h2>
+        <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+          At Hillside Strategies, we connect businesses, governments, and organizations with opportunities that drive growth and impact. Our expertise spans policy advocacy, international relations, and strategic partnerships.
+        </p>
+        
+        <div class="mt-10 grid md:grid-cols-3 gap-8 text-left">
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="text-usblue text-4xl mb-4">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Our Mission</h3>
+            <p class="mt-2 text-gray-600">To bridge the gap between public policy and private enterprise, creating sustainable value for our clients and the communities they serve.</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="text-usred text-4xl mb-4">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Our Vision</h3>
+            <p class="mt-2 text-gray-600">A world where policy and business work in harmony to drive inclusive growth and development across emerging markets.</p>
+          </div>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="text-gold text-4xl mb-4">
+              <i class="fas fa-handshake"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Our Approach</h3>
+            <p class="mt-2 text-gray-600">We combine local expertise with global perspective, delivering tailored strategies that navigate complex regulatory environments.</p>
+          </div>
+        </div>
+        <div class="mt-10">
+          <a href="#" class="px-6 py-3 bg-usblue text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition" onclick="showPage('about')">Learn More About Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Preview Section -->
+    <section id="services-preview" class="py-16 bg-gray-100">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-gray-900">Our Services</h2>
+        <p class="mt-4 text-lg text-gray-600 text-center max-w-3xl mx-auto">
+          We offer specialized services to help you navigate complex political landscapes and achieve your strategic objectives.
+        </p>
+        <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Political Networking -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usblue">
+            <div class="text-usblue text-4xl mb-4">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Political Networking</h3>
+            <p class="mt-2 text-gray-600">Building strategic connections with key policymakers, government officials, and influential stakeholders to advance your interests.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usblue text-white rounded-lg hover:bg-blue-700 transition" onclick="showServiceDetail('political-networking')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Research -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usred">
+            <div class="text-usred text-4xl mb-4">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Research</h3>
+            <p class="mt-2 text-gray-600">Comprehensive policy analysis, market research, and political landscape assessment to inform your strategic decisions.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usred text-white rounded-lg hover:bg-red-700 transition" onclick="showServiceDetail('research')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Intelligence Gathering -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-gold">
+            <div class="text-gold text-4xl mb-4">
+              <i class="fas fa-binoculars"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Intelligence Gathering</h3>
+            <p class="mt-2 text-gray-600">Strategic information collection and analysis to provide insights into political developments, policy changes, and emerging opportunities.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-gold text-white rounded-lg hover:bg-yellow-600 transition" onclick="showServiceDetail('intelligence-gathering')">Learn More</a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 text-center">
+          <a href="#" class="px-6 py-3 bg-usblue text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition" onclick="showPage('services')">View All Services</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- About Page -->
+  <div id="about" class="page">
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-center text-gray-900 mb-12">About Hillside Strategies</h1>
+        
+        <div class="grid md:grid-cols-1 gap-12 items-center">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Our Story</h2>
+            <p class="text-gray-600 mb-6">
+              Founded in December 2024, Hillside Strategies was established to bridge the gap between policy and business in emerging markets across Africa. We recognized the need for strategic advisory services that combine local expertise with global perspective.
+            </p>
+            <p class="text-gray-600 mb-6">
+              Our team brings together seasoned professionals with deep experience in political advocacy, government relations, and strategic consulting. We understand the complex regulatory environments across African nations and have built strong networks with key stakeholders.
+            </p>
+            <p class="text-gray-600">
+              At Hillside Strategies, we're committed to helping our clients navigate political landscapes, build meaningful relationships with decision-makers, and achieve their strategic objectives through ethical and effective advocacy.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Values Section -->
+        <div class="mt-16">
+          <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Our Values</h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-6 rounded-lg text-center">
+              <div class="text-usblue text-4xl mb-4">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3">Integrity</h3>
+              <p class="text-gray-600">We maintain the highest ethical standards in all our engagements, ensuring transparency and trust in every relationship.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg text-center">
+              <div class="text-usred text-4xl mb-4">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3">Innovation</h3>
+              <p class="text-gray-600">We develop creative solutions to complex challenges, leveraging cutting-edge approaches and technologies.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-lg text-center">
+              <div class="text-gold text-4xl mb-4">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-3">Partnership</h3>
+              <p class="text-gray-600">We work collaboratively with our clients, treating their challenges as our own and their success as our priority.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Locations Section -->
+        <div class="mt-16">
+          <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Our Locations Across Africa</h2>
+          <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-10">
+            With offices and representatives in key African capitals, we maintain a strong on-the-ground presence across the continent.
+          </p>
+          
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Nairobi, Kenya</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Kampala, Uganda</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Kigali, Rwanda</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Arusha, Tanzania</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Addis Ababa, Ethiopia</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Khartoum, Sudan</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Juba, South Sudan</h4>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+              <i class="fas fa-map-marker-alt text-usblue text-xl mb-2"></i>
+              <h4 class="font-semibold">Abuja, Nigeria</h4>
+            </div>
+          </div>
+          
+          <!-- Africa Map -->
+          <div class="mt-10">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">Our Presence Across Africa</h3>
+            <div class="africa-map">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Africa_%28orthographic_projection%29.svg/600px-Africa_%28orthographic_projection%29.svg.png" alt="Map of Africa with markers showing Hillside Strategies locations" class="w-full">
+              
+              <!-- Markers for each location -->
+              <div class="location-marker" style="top: 30%; left: 60%;">
+                <div class="location-tooltip">Nairobi, Kenya</div>
+              </div>
+              <div class="location-marker" style="top: 33%; left: 59%;">
+                <div class="location-tooltip">Kampala, Uganda</div>
+              </div>
+              <div class="location-marker" style="top: 35%; left: 60%;">
+                <div class="location-tooltip">Kigali, Rwanda</div>
+              </div>
+              <div class="location-marker" style="top: 40%; left: 60%;">
+                <div class="location-tooltip">Arusha, Tanzania</div>
+              </div>
+              <div class="location-marker" style="top: 32%; left: 63%;">
+                <div class="location-tooltip">Addis Ababa, Ethiopia</div>
+              </div>
+              <div class="location-marker" style="top: 28%; left: 58%;">
+                <div class="location-tooltip">Khartoum, Sudan</div>
+              </div>
+              <div class="location-marker" style="top: 30%; left: 57%;">
+                <div class="location-tooltip">Juba, South Sudan</div>
+              </div>
+              <div class="location-marker" style="top: 33%; left: 48%;">
+                <div class="location-tooltip">Abuja, Nigeria</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Services Page -->
+  <div id="services" class="page">
+    <section class="py-16 bg-gray-100">
+      <div class="max-w-6xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-center text-gray-900 mb-4">Our Services</h1>
+        <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">
+          We offer specialized services to help you navigate complex political landscapes and achieve your strategic objectives across Africa and globally.
+        </p>
+        
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          
+          <!-- Political Networking -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usblue">
+            <div class="text-usblue text-4xl mb-4">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Political Networking</h3>
+            <p class="mt-2 text-gray-600">Building strategic connections with key policymakers, government officials, and influential stakeholders to advance your interests.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usblue text-white rounded-lg hover:bg-blue-700 transition" onclick="showServiceDetail('political-networking')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Research -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usred">
+            <div class="text-usred text-4xl mb-4">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Research</h3>
+            <p class="mt-2 text-gray-600">Comprehensive policy analysis, market research, and political landscape assessment to inform your strategic decisions.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usred text-white rounded-lg hover:bg-red-700 transition" onclick="showServiceDetail('research')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Intelligence Gathering -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-gold">
+            <div class="text-gold text-4xl mb-4">
+              <i class="fas fa-binoculars"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Intelligence Gathering</h3>
+            <p class="mt-2 text-gray-600">Strategic information collection and analysis to provide insights into political developments, policy changes, and emerging opportunities.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-gold text-white rounded-lg hover:bg-yellow-600 transition" onclick="showServiceDetail('intelligence-gathering')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Political Auditing -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usblue">
+            <div class="text-usblue text-4xl mb-4">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Political Auditing</h3>
+            <p class="mt-2 text-gray-600">Comprehensive assessment of your political exposure, stakeholder relationships, and regulatory compliance requirements.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usblue text-white rounded-lg hover:bg-blue-700 transition" onclick="showServiceDetail('political-auditing')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Parliamentary Drafting -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usred">
+            <div class="text-usred text-4xl mb-4">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Parliamentary Drafting</h3>
+            <p class="mt-2 text-gray-600">Expert drafting of legislation, amendments, and policy documents to advance your objectives through formal parliamentary processes.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usred text-white rounded-lg hover:bg-red-700 transition" onclick="showServiceDetail('parliamentary-drafting')">Learn More</a>
+            </div>
+          </div>
+          
+          <!-- Government Relations -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-gold">
+            <div class="text-gold text-4xl mb-4">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Government Relations</h3>
+            <p class="mt-2 text-gray-600">Building bridges with policymakers to shape favorable regulations and partnerships that support your organizational goals.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-gold text-white rounded-lg hover:bg-yellow-600 transition" onclick="showServiceDetail('government-relations')">Learn More</a>
+            </div>
+          </div>
+
+          <!-- HS Analytics -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usblue">
+            <div class="text-usblue text-4xl mb-4">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">HS Analytics</h3>
+            <p class="mt-2 text-gray-600">Advanced data analytics and predictive modeling to identify trends, risks, and opportunities in the political and policy landscape.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usblue text-white rounded-lg hover:bg-blue-700 transition" onclick="showServiceDetail('hs-analytics')">Learn More</a>
+            </div>
+          </div>
+
+          <!-- Coalitions -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-usred">
+            <div class="text-usred text-4xl mb-4">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Coalitions</h3>
+            <p class="mt-2 text-gray-600">Building and managing strategic alliances and coalitions to amplify your influence and achieve shared policy objectives.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-usred text-white rounded-lg hover:bg-red-700 transition" onclick="showServiceDetail('coalitions')">Learn More</a>
+            </div>
+          </div>
+
+          <!-- Campaign Funding -->
+          <div class="service-card bg-white p-6 rounded-2xl shadow border-t-4 border-purple-600">
+            <div class="text-purple-600 text-4xl mb-4">
+              <i class="fas fa-vote-yea"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800">Campaign Funding</h3>
+            <p class="mt-2 text-gray-600">Strategic election campaign funding and financial support services to help candidates achieve electoral success.</p>
+            <div class="mt-6">
+              <a href="#" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition" onclick="showServiceDetail('campaign-funding')">Learn More</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- What We Do Section -->
+        <div class="mt-16 bg-white p-8 rounded-2xl">
+          <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">What We Do</h2>
+          <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-8">
+            Our expertise spans multiple sectors, providing specialized services tailored to each industry's unique needs.
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Charities -->
+            <div class="category-tag bg-usblue text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-hands-helping"></i>
+              </div>
+              <h3 class="font-semibold">Charities</h3>
+            </div>
+            
+            <!-- Environment -->
+            <div class="category-tag bg-emerald-600 text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h3 class="font-semibold">Environment</h3>
+            </div>
+            
+            <!-- Intelligence Gathering & Investigations -->
+            <div class="category-tag bg-usred text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-search"></i>
+              </div>
+              <h3 class="font-semibold text-center">Intelligence Gathering & Investigations</h3>
+            </div>
+            
+            <!-- Place of Worship -->
+            <div class="category-tag bg-purple-600 text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-place-of-worship"></i>
+              </div>
+              <h3 class="font-semibold">Worship</h3>
+            </div>
+            
+            <!-- Public Affairs -->
+            <div class="category-tag bg-gold text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-microphone"></i>
+              </div>
+              <h3 class="font-semibold">Public Affairs</h3>
+            </div>
+            
+            <!-- Healthcare -->
+            <div class="category-tag bg-pink-600 text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+              <h3 class="font-semibold">Healthcare</h3>
+            </div>
+
+            <!-- Defense & Critical Tech -->
+            <div class="category-tag bg-navy text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 class="font-semibold text-center">Defense & Critical Tech</h3>
+            </div>
+
+            <!-- Mining -->
+            <div class="category-tag bg-amber-700 text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-mountain"></i>
+              </div>
+              <h3 class="font-semibold">Mining</h3>
+            </div>
+
+            <!-- Energy -->
+            <div class="category-tag bg-amber-500 text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3 class="font-semibold">Energy</h3>
+            </div>
+
+            <!-- Elections -->
+            <div class="category-tag bg-purple-500 text-white p-4 rounded-lg text-center shadow hover:shadow-lg">
+              <div class="text-2xl mb-2">
+                <i class="fas fa-person-booth"></i>
+              </div>
+              <h3 class="font-semibold">Elections</h3>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="mt-12 text-center">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
+          <p class="text-gray-600 mb-6 max-w-2xl mx-auto">Contact us today to discuss how our services can help you achieve your strategic objectives.</p>
+          <a href="#" class="px-6 py-3 bg-usblue text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition" onclick="showPage('contact')">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Service Detail Pages -->
+  <div id="service-detail" class="page">
+    <section class="service-hero py-16 text-white">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h1 id="service-title" class="text-4xl font-bold mb-4">Service Title</h1>
+        <p id="service-description" class="text-xl">Service description will appear here</p>
+      </div>
+    </section>
+    
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="md:col-span-2">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
+            <div id="service-content" class="text-gray-600 space-y-4">
+              <p>Service content will appear here</p>
+            </div>
+            
+            <div class="mt-8">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Case Studies</h3>
+              <div class="space-y-4">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <h4 class="font-semibold text-gray-800">Case Study Title</h4>
+                  <p class="text-gray-600 text-sm mt-1">Case study description will appear here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <div class="bg-gray-50 p-6 rounded-2xl sticky top-24">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">How We Can Help</h3>
+              <ul class="space-y-3 text-gray-600">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-usblue mt-1 mr-2"></i>
+                  <span>Benefit 1</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-usblue mt-1 mr-2"></i>
+                  <span>Benefit 2</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-usblue mt-1 mr-2"></i>
+                  <span>Benefit 3</span>
+                </li>
+              </ul>
+              
+              <div class="mt-6">
+                <a href="#" class="block w-full text-center px-4 py-3 bg-usblue text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition" onclick="showPage('contact')">Get Started</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-12 text-center">
+          <a href="#" class="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow hover:bg-gray-300 transition" onclick="showPage('services')">Back to All Services</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Contact Page -->
+  <div id="contact" class="page">
+    <section class="py-16 bg-usblue text-white">
+      <div class="max-w-4xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-center mb-4">Contact Us</h1>
+        <p class="text-lg text-center mb-12">Partner with Hillside Strategies to advance your interests across Africa and globally.</p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+          <div>
+            <h2 class="text-2xl font-semibold mb-6">Get In Touch</h2>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <i class="fas fa-map-marker-alt text-gold mt-1 mr-4"></i>
+                <div>
+                  <h3 class="font-semibold">Headquarters</h3>
+                  <p>246 Avenue, Nairobi,  Kenya</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-phone text-gold mt-1 mr-4"></i>
+                <div>
+                  <h3 class="font-semibold">Phone</h3>
+                  <p>+254 76 96367459
+                    
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-envelope text-gold mt-1 mr-4"></i>
+                <div>
+                  <h3 class="font-semibold">Email</h3>
+                  <p>info@hillsidestrategies.com</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-clock text-gold mt-1 mr-4"></i>
+                <div>
+                  <h3 class="font-semibold">Business Hours</h3>
+                  <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                  <p>Saturday: 9:00 AM - 1:00 PM</p>
+                </div>
+              </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold mt-8 mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-usred flex items-center justify-center hover:bg-blue-700 transition">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-usred flex items-center justify-center hover:bg-blue-700 transition">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-usred flex items-center justify-center hover:bg-blue-700 transition">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </div>
+          </div>
+          
+          <form class="space-y-4 text-left" id="contact-form">
+            <input type="text" placeholder="Full Name" class="w-full p-3 rounded-lg text-gray-900" required>
+            <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg text-gray-900" required>
+            <input type="text" placeholder="Company Name" class="w-full p-3 rounded-lg text-gray-900" required>
+            <select class="w-full p-3 rounded-lg text-gray-900" required>
+              <option value="" disabled selected>Service of Interest</option>
+              <option value="political-networking">Political Networking</option>
+              <option value="research">Research</option>
+              <option value="intelligence-gathering">Intelligence Gathering</option>
+              <option value="political-auditing">Political Auditing</option>
+              <option value="parliamentary-drafting">Parliamentary Drafting</option>
+              <option value="government-relations">Government Relations</option>
+              <option value="hs-analytics">HS Analytics</option>
+              <option value="coalitions">Coalitions</option>
+              <option value="campaign-funding">Campaign Funding</option>
+            </select>
+            <select class="w-full p-3 rounded-lg text-gray-900" required>
+              <option value="" disabled selected>Sector of Interest</option>
+              <option value="charities">Charities</option>
+              <option value="environment">Environment</option>
+              <option value="intelligence">Intelligence Gathering & Investigations</option>
+              <option value="worship">Place of Worship</option>
+              <option value="public-affairs">Public Affairs</option>
+              <option value="healthcare">Healthcare</option>
+              <option value="defense">Defense & Critical Tech</option>
+              <option value="mining">Mining</option>
+              <option value="energy">Energy</option>
+              <option value="elections">Elections</option>
+            </select>
+            <textarea placeholder="Your Message" rows="4" class="w-full p-3 rounded-lg text-gray-900" required></textarea>
+            <button type="submit" class="w-full py-3 bg-usred text-white font-semibold rounded-lg shadow hover:bg-red-700 transition">Send Message</button>
+          </form>
+        </div>
+        
+        <!-- Regional Offices -->
+        <div class="mt-16">
+          <h2 class="text-2xl font-semibold text-center mb-8">Our Regional Offices</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white text-gray-900 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-2">East Africa Office</h3>
+              <p class="mb-2">Nairobi, Kenya</p>
+              <p class="text-sm">+254 20 123 4567</p>
+              <p class="text-sm">eastafrica@hillsidestrategies.com</p>
+            </div>
+            <div class="bg-white text-gray-900 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-2">West Africa Office</h3>
+              <p class="mb-2">Abuja, Nigeria</p>
+              <p class="text-sm">+234 9 876 5432</p>
+              <p class="text-sm">westafrica@hillsidestrategies.com</p>
+            </div>
+            <div class="bg-white text-gray-900 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold mb-2">Southern Africa Office</h3>
+              <p class="mb-2">Pretoria, South Africa</p>
+              <p class="text-sm">+27 12 345 6789</p>
+              <p class="text-sm">southernafrica@hillsidestrategies.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Hillside Strategies</h3>
+          <p>Shaping policy and business outcomes across Africa and the globe.</p>
+        </div>
+        <div>
+          <a href="#" class="Services-link">Services</a>
+          <ul class="space-y-2 mt-2">
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Political Networking</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Research</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Intelligence Gathering</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Political Auditing</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Parliamentary Drafting</a></li>
+          </ul>
+        </div>
+        <div>
+          <a href="#" class="what-we-do-link">What We Do</a>
+          <ul class="space-y-2 mt-2">
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Charities</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Environment</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Intelligence Gathering & Investigations</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Place of Worship</a></li>
+            <li><a href="#" class="hover:text-white transition" onclick="showPage('services')">Public Affairs</a></li>
+          </ul>
+        </div>
+        <div>
+          <a href="#" class="our-locations-link">Our Locations</a>
+          <p class="mb-2 text-sm mt-2">Nairobi, Kampala, Kigali, Arusha</p>
+          <p class="mb-2 text-sm">Addis Ababa, Khartoum, Juba</p>
+          <p class="mb-2 text-sm">Abuja, Durban, Pretoria</p>
+          <p class="mb-4 text-sm">Bujumbura, Lusaka</p>
+          <h3 class="text-white text-lg font-semibold mb-4">Subscribe</h3>
+          <p class="mb-4 text-sm">Subscribe to our newsletter for updates on policy changes and market insights.</p>
+          <div class="flex">
+            <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-lg text-gray-900 w-full text-sm">
+            <button class="bg-usred text-white px-4 py-2 rounded-r-lg hover:bg-red-700 transition text-sm">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p>&copy; 2025 Hillside Strategies. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Page navigation functionality
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+      
+      // Scroll to top
+      window.scrollTo(0, 0);
+      
+      // Close mobile menu if open
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuToggle = document.getElementById('menu-toggle');
+      const icon = menuToggle.querySelector('i');
+      
+      mobileMenu.classList.add('hidden');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+    
+    // Service detail pages
+    function showServiceDetail(serviceId) {
+      const serviceData = {
+        'political-networking': {
+          title: 'Political Networking',
+          description: 'Building strategic connections with key policymakers and stakeholders',
+          content: `
+            <p>Our Political Networking service focuses on building and maintaining strategic relationships with key policymakers, government officials, and influential stakeholders across Africa.</p>
+            <p>We leverage our extensive network to create opportunities for our clients to engage with decision-makers, participate in policy discussions, and shape the regulatory environment in their favor.</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Our Approach</h3>
+            <p>We employ a multi-faceted approach to political networking:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2">
+              <li>Identifying and mapping key stakeholders and decision-makers</li>
+              <li>Facilitating introductions and relationship-building opportunities</li>
+              <li>Organizing targeted events and roundtable discussions</li>
+              <li>Providing strategic advice on engagement approaches</li>
+              <li>Monitoring political developments and identifying new opportunities</li>
+            </ul>
+          `,
+          benefits: [
+            'Access to key decision-makers and influencers',
+            'Strategic positioning within policy circles',
+            'Early intelligence on policy developments',
+            'Enhanced credibility and visibility',
+            'Opportunities to shape policy outcomes'
+          ]
+        },
+        'research': {
+          title: 'Research & Analysis',
+          description: 'Comprehensive policy and market research to inform strategic decisions',
+          content: `
+            <p>Our Research service provides comprehensive analysis of political landscapes, policy environments, and market conditions across Africa.</p>
+            <p>We deliver actionable insights that help our clients understand regulatory frameworks, identify opportunities, and mitigate risks in their operations.</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Research Capabilities</h3>
+            <p>Our research team employs both qualitative and quantitative methods:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2">
+              <li>Policy and regulatory analysis</li>
+              <li>Stakeholder mapping and influence analysis</li>
+              <li>Political risk assessment</li>
+              <li>Market entry studies</li>
+              <li>Competitive intelligence</li>
+              <li>Public opinion research</li>
+            </ul>
+          `,
+          benefits: [
+            'Evidence-based decision making',
+            'Comprehensive understanding of regulatory environments',
+            'Identification of risks and opportunities',
+            'Strategic planning support',
+            'Competitive advantage through insights'
+          ]
+        },
+        'intelligence-gathering': {
+          title: 'Intelligence Gathering',
+          description: 'Strategic information collection and analysis for informed decision-making',
+          content: `
+            <p>Our Intelligence Gathering service provides critical information on political developments, policy changes, and emerging opportunities across Africa.</p>
+            <p>We employ ethical and legal methods to collect and analyze information that helps our clients navigate complex environments and make informed decisions.</p>
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Intelligence Capabilities</h3>
+            <p>Our intelligence gathering includes:</p>
+            <ul class="list-disc pl-5 mt-2 space-y-2">
+              <li>Political and policy monitoring</li>
+              <li>Stakeholder intelligence</li>
+              <li>Due diligence and background checks</li>
+              <li>Competitive intelligence</li>
+              <li>Risk assessment and early warning</li>
+              <li>Strategic forecasting</li>
+            </ul>
+          `,
+          benefits: [
+            'Early warning of political and regulatory changes',
+            'Enhanced due diligence capabilities',
+            'Competitive intelligence advantage',
+            'Informed risk management',
+            'Strategic foresight for planning'
+          ]
+        }
+      };
+      
+      if (serviceData[serviceId]) {
+        const service = serviceData[serviceId];
+        
+        // Update service detail page content
+        document.getElementById('service-title').textContent = service.title;
+        document.getElementById('service-description').textContent = service.description;
+        document.getElementById('service-content').innerHTML = service.content;
+        
+        // Update benefits list
+        const benefitsList = document.querySelector('#service-detail .bg-gray-50 ul');
+        benefitsList.innerHTML = '';
+        service.benefits.forEach(benefit => {
+          benefitsList.innerHTML += `
+            <li class="flex items-start">
+              <i class="fas fa-check text-usblue mt-1 mr-2"></i>
+              <span>${benefit}</span>
+            </li>
+          `;
+        });
+        
+        // Show service detail page
+        showPage('service-detail');
+      }
+    }
+    
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleButton = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const icon = toggleButton.querySelector('i');
+      
+      // Initialize tooltips as hidden
+      document.querySelectorAll('.location-tooltip').forEach(tooltip => { 
+        tooltip.style.display = 'none'; 
+      });
+      
+      // Mobile menu toggle functionality
+      toggleButton?.addEventListener('click', function() {
+        mobileMenu?.classList.toggle('hidden');
+        
+        // Toggle icon
+        if (icon.classList.contains('fa-bars')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+      
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        });
+      });
+      
+      // Tooltip functionality
+      document.querySelectorAll('.location-marker').forEach(marker => {
+        marker.addEventListener('mouseenter', () => {
+          marker.querySelector('.location-tooltip').style.display = 'block';
+        });
+        
+        marker.addEventListener('mouseleave', () => {
+          marker.querySelector('.location-tooltip').style.display = 'none';
+        });
+      });
+      
+      // Form submission
+      document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        this.reset();
+      });
+    });
+  </script>
+</body>
+</html>
